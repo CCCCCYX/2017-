@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>购物车</title>
+	<meta charset="utf-8">
+</head>
+<style type="text/css">
+	* {margin: 0;padding: 0;}
+	body {padding: 20px;}
+	table{text-align: center;width: 1000px;border: 1px solid black;}
+	th,td{border: 1px solid black;}
+	th{background: white;height: 30px;}
+	td{padding: 20px;}
+	tbody tr:hover{background: RGB(238,246,255);}
+	.fl{float: left;}
+	.fr{position: relative; float: right;right: 240px; padding-left: 20px;}
+	.count{width: 110px;}
+	.count input{padding: 4px;}
+	.count .add, .count input, .count .reduce {position: relative;float: left;padding: 10px;}
+	.count-input{width: 20px;height: 20px;text-align: center;}
+	.count .add{height: 24px;width: 10px;font-weight: bold;background-color: rgba(96,96,96,0.5);text-align: center;font-size: 20px;}
+	.count .reduce{height: 24px;width: 10px;font-weight: bold;background-color: rgba(96,96,96,0.5);text-align: center;padding-left: -5px;}
+	.count .add:hover{cursor: pointer;color: white;}
+	.count .reduce:hover{cursor: pointer;color: white;}
+	.foot{line-height: 30px;}
+	.foot .closing{background-color: RGB(200,246,255);text-align: center;width: 80px;height: 30px;padding-left: 4px;}
+	
+</style>
+<script type="text/javascript">
+	window.onload=function(){
+		var cartTable=document.getElementById('cartTable');
+		var tr=cartTable.children[1].rows;//rows 是表格元素特有的属性，存放节点所有tr元素
+		var checkInputs=document.getElementsByClassName('check');//数量框
+		var checkAllInputs=document.getElementsByClassName('check-all');//全选框
+		var selectedTotal=document.getElementById('selectedTotal');//总数量
+		var priceTotal=document.getElementById('priceTotal');//总价格
+
+		function getTotal(){
+			var seleted=0;
+			var price=0;
+			for (var i=0,len=tr.length;i<len;i++) {
+			if(tr[i].getElementsByTagName('input')[0].checked){
+				seleted+=parseInt(tr[i].getElementsByTagName('input')[1].value);
+				price+=parseInt(tr[i].cells[4].innerHTML);
+			}
+		}
+		selectedTotal.innerHTML=seleted;
+		priceTotal.innerHTML=price;
+	}
+
+
+
+		for (var i=0,len=checkInputs.length;i<len;i++) {
+			checkInputs[i].onclick=function(){
+				if(this.className==="check-all check"){            //实现全选
+					for (var j=0;j<checkInputs.length;j++) {
+						checkInputs[j].checked=this.checked;
+					}
+				}
+				if(this.checked==false){
+					for (var k=0;k<checkAllInputs.length;k++) {    //实现有一个单品未选则取消全选
+						checkAllInputs[k].checked=false;
+					}
+				}
+				getTotal();
+			}
+		}
+
+		for (var i=0; i<tr.length;i++) {     //'+''-'按钮实现
+			tr[i].onclick=function(e){
+				e=e||window.event;
+				var el=e.srcElement;
+				var cls=el.className;
+				var input=this.getElementsByTagName('input')[1];
+				var val=parseInt(input.value);
+				var reduce=this.getElementsByTagName('span')[0];
+				switch(cls){
+					case 'add':
+					input.value=val+1;
+					reduce.innerHTML='-';
+					getSubTotal(this);
+					break;
+					case 'reduce':
+					if(input.value>1){
+						input.value=val-1;
+					}
+					if(input.value<=1){
+						reduce.innerHTML='';
+					}
+					getSubTotal(this);
+					break;
+					default:
+					break;
+				}
+				getTotal();
+			}
+			tr[i].getElementsByTagName('input')[1].onkeyup=function(){
+				var val=parseInt(this.value);
+				var tr=this.parentNode.parentNode;
+				var reduce=tr.getElementsByTagName('span')[0];
+				if(isNaN(val)||val<1){
+					val=1;
+				}
+				this.value=val;
+				if (val<=1) {
+					reduce.innerHTML='';
+				}
+				else{
+					reduce.innerHTML='-';
+				}
+				getSubTotal(this.parentNode.parentNode);//parsenode是父节点
+				getTotal();
+		}
+	}
+
+		function getSubTotal(tr){
+			var tds=tr.cells;
+			var price=parseInt(tds[2].innerHTML);
+			var count=parseInt(tr.getElementsByTagName('input')[1].value);
+			var subtotal=parseInt(price*count);
+			tds[4].innerHTML=subtotal;
+		}
+
+	}
+</script>
+<body>
+	<table id="cartTable">
+		<thead>
+		<tr>
+			<th><label><input class="check-all check" type="checkbox">&nbsp;全选</label></th>
+			<th>商品</th>
+			<th>单价</th>
+			<th>数量</th>
+			<th>小计</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td class="checkbox"><input class="check-one check" type="checkbox" ></td>
+			<td class="goods">NIKE AIR FORCE1</td>
+			<td class="price">849</td>
+			<td class="count">
+				<span class="reduce"></span>
+				<input class="count-input" value="1"/>
+				<span class="add">+</span></td>
+				<td class="subtotal">849</td>
+		</tr>
+		<tr>
+			<td class="checkbox"><input class="check-one check" type="checkbox" ></td>
+			<td class="goods">Dr.Althea气垫BB霜</td>
+			<td class="price">138</td>
+			<td class="count">
+				<span class="reduce"></span>
+				<input class="count-input" value="1"/>
+				<span class="add">+</span></td>
+				<td class="subtotal">138</td>
+			
+		</tr>
+		<tr>
+			<td class="checkbox"><input class="check-one check" type="checkbox" ></td>
+			<td class="goods">Tom Ford黑管80</td>
+			<td class="price">439</td>
+			<td class="count">
+				<span class="reduce"></span>
+				<input class="count-input" value="1"/>
+				<span class="add">+</span></td>
+				<td class="subtotal">439</td>
+			
+		</tr>
+	</tbody>
+	</table>
+	<div class="foot" id="foot">
+		<label class="fl select-all"><input type="checkbox" class="check-all check">&nbsp;全选</label>
+		<button class="fr closing">结算</button>
+		<div class="fr total">合计：￥<span id="priceTotal">0.00</span></div>
+		<div class="fr seleted" id="seleted">已选商品
+			<span id="selectedTotal">0</span>件
+		</div>
+	</div>
+</body>
+</html>
