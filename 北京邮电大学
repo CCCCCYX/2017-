@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>北京邮电大学 | Beijing University of Posts and Telecommunications</title>
+	<style type="text/css">
+		#container{position: relative;width: 1275px;padding: 0;margin: 0;height: 607px;border: 0;overflow: hidden;left: -8px;top: -10px;}
+		#pics{position: absolute;width: 8925px;height: 607px;margin: 0;padding: 0;border: 0;z-index: 1;left: 0;}
+		#container img{left: 0;width: 1275px;height: 607px;}
+		.arrow{position:absolute; cursor: pointer;display: none;text-align: center;font-size: 50px;width: 50px;height: 40px;text-decoration: none;background-color: rgba(0,0,0,.3);line-height: 39px;display: block;}
+		#prev{top: 300px;left: 10px;font-size: bold;background-color: rgba(0,0,0,.3);z-index: 2;color: #fff;}
+		#next{top: 300px;right: 10px;font-size: bold;background-color: rgba(0,0,0,.3);z-index: 2;color: #fff;}
+		.arrow:hover{background-color: rgba(0,0,0,.7);}
+		#container:hover.arrow { display: block;}
+		#logo{position:absolute;border: none;padding: 0;margin: 0;p: 0;left: 0;z-index: 2;}
+		#logo img{width: 307.66px;height: 101px;}
+		.boxes ul{position:relative;list-style-type: none;margin: 0;padding: 0;left:306.5px;margin: auto;z-index: 5;}
+		.boxes li{float: left;width: 103px;height: 101px;transition: width 1s;border-left: solid 0.5px white;background-color: rgba(255,0,0,0.4);}
+		.boxes li:hover{width: 206px;background-color:rgba(0,191,255,0.1);}
+		.boxes li a{display: block;color: white;text-align: center;text-decoration: none;z-index: 6;line-height: 100px;}
+		.boxes li a:hover{color: red;text-align: left;margin-left: 20px;}
+		
+		#small{position: absolute;width: 103px;height: 101px;background-color: red;opacity: 0.4;right: 474px;z-index: 2;margin-right: -23px;transition: width 1s;}
+		/*#right{position: absolute;width: 157px;height: 35.5px;background-color: red;opacity: 0.4;right: 294px;z-index: 2;}*/
+		#blew{position: absolute;width: 449px;height: 65px;background-color: red;opacity: 0.4;right: 2px;z-index: 2;top: 36px;}
+		#open ul{position:absolute;list-style-type: none;margin: 0;padding: 0;margin: auto;z-index: 2;opacity: 0.4;left: 823px;}
+		#open li{float:right;height: 35.5px;border-left: solid 0.5px white; background-color: red;}
+		#open a{text-decoration: none;color: white;font-size: 14px;line-height: 35.5px;padding: 21px;}
+		.dropdown{display: none;position: absolute;background-color: red;opacity: 0.4;width: 206px;z-index: 5;}
+		.boxes :hover .dropdown{display: inline-block;}
+		.dropdown a{text-decoration: none;display: block;color: white;}
+		.dropdown a :hover{color: yellow;}
+        #log_in{color: white;line-height: 35px;font-size: 14px;}
+		#log_in a{text-align: center;text-decoration: none;color: white;z-index: 5;font-size: 14px;line-height: 35px;padding:5px;}
+		#log_pic{position: absolute;display: block;z-index: 5;}
+		.sq{position: absolute;width: 102px;height: 102px;background-color: red;opacity: 0.8;z-index: 3;}
+		.sq:hover{background-color: black;opacity: 0.5;}
+		#pei{position: absolute;width: 42px;height: 42px;padding: 30px;left: 309px;top: 206px;z-index: 4;}
+		#pei a{text-align: center;font-size: 16px;text-decoration: none;color: white;}
+		#jiu{position: absolute;width: 42px;height: 42px;padding: 30px;left: 412px;top: 206px;z-index: 4;}
+		#jiu a{text-align: center;font-size: 16px;text-decoration: none;color: white;}
+		#yan{position: absolute;width: 42px;height: 42px;padding: 30px;left: 309px;top: 309px;z-index: 4;}
+		#yan a{text-align: center;font-size: 16px;text-decoration: none;color: white;}
+		#zhuan{position: absolute;width: 42px;height: 42px;padding: 30px;left: 412px;top: 309px;z-index: 4;}
+		#zhuan a{text-align: center;font-size: 16px;text-decoration: none;color: white;}
+		#jiao{position: absolute;width: 42px;height: 42px;padding: 30px;left: 954px;top: 206px;z-index: 4;}
+		#jiao a{text-align: center;font-size: 16px;text-decoration: none;color: white;}
+		#zhao{position: absolute;width: 42px;height: 42px;padding: 30px;left: 1057px;top: 206px;z-index: 4;}
+		#zhao a{text-align: center;font-size: 16px;text-decoration: none;color: white;}
+		#gong{position: absolute;width: 42px;height: 42px;padding: 30px;left: 954px;top: 309px;z-index: 4;}
+		#gong a{text-align: center;font-size: 16px;text-decoration: none;color: white;}
+		#fu{position: absolute;width: 42px;height: 42px;padding: 30px;left: 1057px;top: 309px;z-index: 4;}
+		#fu a{text-align: center;font-size: 16px;text-decoration: none;color: white;}
+		.black{position: absolute;width: 1260px;height: 60px;background-color: #2b2b2b;z-index: 3;left: 0;bottom: 0;}
+		.black ul{position:absolute;list-style-type: none;margin: 0;padding: 0;left: 300px;top: 5px;z-index: 4;}
+		.black ul li{float: left;background-color: inherit;}
+		.black ul li a{display: block;color: white;text-align: center;text-decoration: none;z-index: 5;font-size: 13px;}
+		.long{position: absolute;left: 315px;bottom: 20px;height: 25px;z-index: 5;}
+		.long p{color: white;font-size: 13px;}
+		.down a{font-size: 13px;}
+		#beixia{position: absolute;width: 206px;height: 103px; background-color: rgba(255,0,0,0.4);z-index: 5;left: 306px;top: 100px;display: none;}
+		#yuanxia{position: absolute;width: 206px;height: 103px; background-color: rgba(255,0,0,0.4);z-index: 5;left: 511px;top: 100px;display: none;}
+		#xuexia{position: absolute;width: 206px;height: 103px; background-color: rgba(255,0,0,0.4);z-index: 5;left: 409px;top: 100px;display: none;}
+		#kexia{position: absolute;width: 206px;height: 103px; background-color: rgba(255,0,0,0.4);z-index: 5;left: 615px;top: 100px;display: none;}
+		.lisi{text-decoration: none;float: left;padding-left: 30px;margin-top: 2px; display: block;color: white;}
+		
+		.li-left{clear: both;}
+		#word{position: absolute;width: 420px;height: 205px;left: 524px;top: 206px;z-index: 2;background-color: rgba(255,255,255,0.7);}
+		#red{position: absolute;width: 420px;height: 4px;left: 524px;top: 206px;z-index: 3; background-color: red;}
+		#left{position: absolute;width: 80px;height: 32px;background-color: white;z-index: 3;top: 10px;left: 10px;}
+		#left a{font-weight: bold;color: #026493;z-index: 4;font-size: 18px;text-decoration: none;}
+		#more{position: absolute;width: 40px;height: 20px;background-color: #ffc900;z-index: 3;right: 15px;top: 5px;top: 10px;}
+		#more a{font-size: 14px;color: white;z-index: 4;text-decoration: none;text-align: center;padding: 6px;}
+		#more a:hover{color: #026493;}
+		.re { display:inline-block;white-space: nowrap; text-decoration: none;height: 25px;z-index: 5;font-size: 14px;text-align: center;color: black;overflow: hidden;text-overflow: ellipsis;float: left;width: 75%;line-height: 30px;background:url("img/line.png") no-repeat 0 8px;}
+		
+		.re:hover{color: blue;}
+		#qwe{position: absolute;top: 35px;width: 380px;right: 20px;}
+		.date{text-decoration: none;font-size: 14px;float: right;color: black;}
+		.date:hover{color: blue;}
+		.search{position: relative;left: 250px;top: 20px;width: 184px;height: 30px;}
+	    #search_sq{position: absolute;left:1px;height: 25px;width: 178px;z-index: 3;top: 0;}
+	    .search img{z-index: 5;}
+		
+    
+	
+	
+	</style>
+</head>
+<script type="text/javascript">
+	 window.onload=function (){
+	 	var science = document.getElementById("science");
+	 	var conditions = document.getElementById("conditions");
+	 	var come = document.getElementById("come");
+	 	var learn = document.getElementById("learn");
+	 	var container=document.getElementById('container');
+	 	var pics=document.getElementById('pics');
+	 	var prev=document.getElementById('prev'); 
+	 	var next=document.getElementById('next');
+	 	var small = document.getElementById('small');
+	 	var timer;
+	 	var beixia=document.getElementById("beixia");
+	 	var yuanxia=document.getElementById("yuanxia");
+	 	var xuexia=document.getElementById("xuexia");
+	 	var kexia=document.getElementById("kexia");
+	 	var animated = false;
+
+	 
+	 	science.onmouseover = function(){
+	 		small.style.width = 0+'px';
+	 		kexia.style.display='block';
+	 	};
+	 	science.onmouseout = function(){
+	 		small.style.width = 103+'px';
+	 		kexia.style.display='none';
+	 		};
+	 	kexia.onmouseover=function(){
+	 		kexia.style.display='block';
+	 		}
+	 	kexia.onmouseout=function(){
+	 		kexia.style.display='none';
+	 		}
+	 	conditions.onmouseover = function(){
+	 		small.style.width = 0+'px';
+	 		beixia.style.display='block';
+	 	};
+	 	conditions.onmouseout = function(){
+	 		small.style.width = 103+'px';
+	 		beixia.style.display='none';
+	 	};
+	 	beixia.onmouseover=function(){
+	 		beixia.style.display='block';
+	 		}
+	 	beixia.onmouseout=function(){
+	 		beixia.style.display='none';
+	 		}
+	 	learn.onmouseover = function(){
+	 		small.style.width = 0+'px';
+	 		xuexia.style.display='block';
+	 	};
+	 	learn.onmouseout = function(){
+	 		small.style.width = 103+'px';
+	 		xuexia.style.display='none';
+	 	};
+	 	xuexia.onmouseover=function(){
+	 		xuexia.style.display='block';
+	 		}
+	 	xuexia.onmouseout=function(){
+	 		xuexia.style.display='none';
+	 		}
+	 	come.onmouseover = function(){
+	 		small.style.width = 0+'px';
+	 		yuanxia.style.display='block';
+	 	};
+	 	come.onmouseout = function(){
+	 		small.style.width = 103+'px';
+	 		yuanxia.style.display='none';
+	 	};
+	 	yuanxia.onmouseover=function(){
+	 		yuanxia.style.display='block';
+	 		}
+	 	yuanxia.onmouseout=function(){
+	 		yuanxia.style.display='none';
+	 		}
+	 	function animate(offset){
+	 	    animated = true;
+	 	    var newLeft=parseInt(pics.style.left)+offset;
+	 		var time =500;//位移总时间
+	 		var interval=5;//位移间隔时间
+	 		var speed=offset/(time/interval);//每次位移量
+
+            function go(){
+            	if ((speed<0&&parseInt(pics.style.left)>newLeft)||speed>0&&parseInt(pics.style.left)<newLeft) {
+            		pics.style.left=parseInt(pics.style.left)+speed+'px';
+         
+            		setTimeout(go, interval);
+            	}
+            	else{
+            		pics.style.left=newLeft+'px';
+
+
+	 				if(newLeft>-1275){
+	 					pics.style.left=-6375+'px';
+	 				}
+	 				if(newLeft<-6375){
+	 					pics.style.left=-1275+'px';
+	 				}
+	 				animated = false;
+
+            	}
+
+            }
+            go();
+		}
+
+
+	 	function play(){                     //自动播放
+	 		timer=setInterval(function(){
+                 next.onclick();
+	 		},5000);
+        }
+        function stop(){                     //停止播放
+        	clearInterval(timer);
+        }
+
+
+	 	  next.onclick=function(){     //左右箭头
+	 	  	 if (animated) {
+                    return;
+                }
+	 		animate(-1280);
+	 	}
+	
+	 	prev.onclick=function(){
+	 		 if (animated) {
+                    return;
+                }
+	 		animate(1280);
+	 	}
+        container.onmouseover=stop;
+        container.onmouseout=play;
+        play();
+      
+    }
+	
+</script>
+<body>
+	<div id="container">
+		<div id="pics" style="left: -1280px;">
+			<img src="img/5.jpg" alt="1">
+			<img src="img/1.jpg" alt="1">
+			<img src="img/2.jpg" alt="2">
+			<img src="img/3.jpg" alt="3">
+			<img src="img/4.jpg" alt="4">
+			<img src="img/5.jpg" alt="5">
+			<img src="img/1.jpg" alt="5">
+		</div>
+
+		<a href="javascript:void(0)" id="prev" class="arrow">&lt;</a>
+		<a href="javascript:void(0)" id="next" class="arrow">&gt;</a>
+
+
+		<div id="logo">
+			<img src="img/logo2017.gif">
+		</div>
+
+
+		<div class="boxes">
+			<ul>
+  				<li><a class="bigbig" href="" id="conditions">北邮概况</a></li>
+ 				<li><a class="bigbig" href="" id="learn">学在北邮</a></li>
+  				<li><a class="bigbig" href="" id="come">院系结构</a></li>
+  				<li><a class="bigbig" href="" id="science">科研学术</a></li>
+			</ul>
+		</div>
+		<div id="small"></div>
+		<!-- <div id="right">
+		
+			<div id="log_in">
+				<img style="width: 35px;height: 35px;float: left;left: 150px;top: 0;" id="log_pic" src="img/ice.png">
+			</div>
+		</div>
+ -->
+		<div id="open">
+			<ul>
+				<li id="change"><a href="">En</a></li>
+				<li><a href="">校长信箱</a></li>
+				<li><a href="">书记信箱</a></li>
+				<li><a href="">OA系统</a></li>
+				<li><a href="">信息门户</a></li>
+			</ul>
+		</div>
+		<div id="blew">
+			<div class="search">
+				<img style="height: 30px;width: 184px;" src="img/7.png">
+				<input id="search_sq" value="搜&nbsp;索">
+			</div>
+				
+		</div>
+
+
+		<div id="beixia" class="down">
+			<a href="" class="lisi ">走进北邮</a>
+			<a href="" class="lisi ">校长演讲</a>
+			<a href="" class="lisi ">领导机构</a>
+			<a href="" class="lisi li-left">邮苑之声</a>
+			<a href="" class="lisi li-left">历史沿革</a>
+		</div>
+		<div id="yuanxia" class="down">
+			<a href="" class="lisi ">教学科研单位</a>
+			<a href="" class="lisi ">党委组织</a>
+			<a href="" class="lisi ">行政单位</a>
+			<a href="" class="lisi li-left">教辅单位</a>
+			<a href="" class="lisi li-left">其他</a>
+		</div>
+		<div id="xuexia" class="down">
+			<a href="" class="lisi ">报考与入学</a>
+			<a href="" class="lisi ">本科生教育</a>
+			<a href="" class="lisi ">研究生教育</a>
+			<a href="" class="lisi ">继续教育</a>
+			<a href="" class="lisi li-left">中外合作办学</a>
+			<a href="" class="lisi li-left">汉语留学生</a>
+			<a href="" class="lisi li-left">就业与实习</a>
+		</div>
+		<div id="kexia" class="down">
+			<a href="" class="lisi ">科研项目</a>
+			<a href="" class="lisi ">人才团队</a>
+			<a href="" class="lisi ">科研成果</a>
+			<a href="" class="lisi ">科研基地</a>
+			<a href="" class="lisi li-left">联合实验室</a>
+			<a href="" class="lisi li-left">技术转移</a>
+			<a href="" class="lisi li-left">学术活动</a>
+			<a href="" class="lisi li-left">北邮学报</a>
+		</div>
+		<!-- <div id="xuexia" class="down"></div>
+		<div id="yuanxia" class="down"></div>
+		<div id="kexia" class="down"></div> -->
+
+		<div class="sq" id="pei"><a href="">人才培养</a><div class="word"></div></div>
+		<div class="sq" id="jiu"><a href="">招生就业</a><div class="word"></div></div>
+		<div class="sq" id="yan"><a href="">科学研究</a><div class="word"></div></div>
+		<div class="sq" id="zhuan"><a href="">专题专栏</a><div class="word"></div></div>
+		<div class="sq" id="jiao"><a href="">合作交流</a><div class="word"></div></div>
+		<div class="sq" id="zhao"><a href="">人才招聘</a><div class="word"></div></div>
+		<div class="sq" id="gong"><a href="">信息公告</a><div class="word"></div></div>
+		<div class="sq" id="fu"><a href="">公共服务</a><div class="word"></div></div>
+
+
+
+		
+		<div class="black">
+			<ul>
+				<li style="width: 59px;height: 20px;"><a href="">校友会</a></li>
+				<li style="width: 59px;height: 20px;"><a href="">基金会</a></li>
+				<li style="width: 43.49px;height: 20px;"><a href="">|</a></li>
+				<li style="width: 72px;height: 20px;"><a href="">沙河校区</a></li>
+				<li style="width: 72px;height: 20px;"><a href="">宏福校区</a></li>
+				<li style="width: 132.69px;height: 20px;"><a href="">延庆校区(世纪学院)</a></li>
+				<li style="width: 72px;height: 20px;"><a href="">附属小学</a></li>
+				<li style="width: 43.49px;height: 20px;"><a href="">|</a></li>
+				<li style="width: 72px;height: 20px;"><a href="">微博微信</a></li>
+				<li style="width: 101.14px;height: 20px;"><a href="">贵州省.长顺县</a></li>
+			</ul>
+			<div class="long"><p>版权所有&nbsp;&copy;&nbsp;北京邮电大学&nbsp;&nbsp;地址:北京市西土城路10号&nbsp;&nbsp;邮编:100876&nbsp;&nbsp;京ICP备&nbsp;05064445号&nbsp;京公网安备110402430070</p></div>
+			
+		</div>
+
+
+		<div id="word">
+			<div id="left"><a href="">北邮要闻</a></div>
+			<div id="more"><a href="">更多</a></div>
+			<div id="qwe">
+
+				<a class="re" href="">《人民日报》刊发我校校长乔建永署名文章：构筑协同创新的新高地<a class="date" href="">07-27</a></a>
+
+				<a class="re" href="">&nbsp;北京邮电大学师生学术论文荣获HCI2018最佳论文奖<a class="date" href="">07-27</a></a>
+            	<a class="re" href="">&nbsp;河南省委常委、常务副省长黄强一行到北邮许昌基地调研<a class="date" href="">07-25</a></a>
+            	<a class="re" href="">&nbsp;海峡两岸(北京)体育交流运动会乒乓球赛在北京邮电大学举行<a class="date" href="">07-22</a></a>
+            	<a class="re" href="">&nbsp;中国网络扶贫理论与政策研究中心”在北京邮电大学正式揭牌成立<a class="date" href="">07-20</a></a>
+            	<a class="re" href="">&nbsp;北邮学子荣获第六届全国高校数字艺术设计大赛一等奖<a class="date" href="">07-20</a></a>
+          
+			</div>
+
+            
+          
+
+
+
+		</div>
+		<div id="red"></div>
+
+	</div>
+		
+
+		
+	
+</body>
+</html>
